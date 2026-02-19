@@ -147,9 +147,6 @@ def ejercicios():
 # -------------------------------------------------------
 #           NUTRICIÓN (Edamam)
 # -------------------------------------------------------
-APP_ID  = "7ee2f2e1"
-APP_KEY = "be6c14d427519fe6319c3db8e0ef2efe"
-
 
 @app.route("/nutricion", methods=["GET", "POST"])
 def nutricion():
