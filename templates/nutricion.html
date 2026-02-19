@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="section-banner fade-in">
+    <h2 class="fw-bold">Consulta Nutricional 🍽️</h2>
+    <p>Ingresa un alimento para ver su información nutricional.</p>
+</div>
+
+<!-- FORMULARIO -->
+<form method="POST" class="text-center mb-4 fade-in">
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <input type="text" name="alimento" class="form-control"
+               style="max-width: 340px;"
+               placeholder="ej: 1 cup rice, 100g chicken, 1 apple"
+               value="{{ alimento or '' }}"
+               required>
+        <button type="submit" class="btn btn-success px-4">
+            <i class="bi bi-search me-1"></i> Buscar
+        </button>
+    </div>
+    <p class="text-muted mt-2" style="font-size:0.8rem;">
+        Escribe en inglés con cantidad: <em>1 cup rice</em>, <em>100g salmon</em>, <em>1 banana</em>
+    </p>
+</form>
+
+{% if alimento and nutrientes %}
+
+<div class="row justify-content-center">
+  <div class="col-md-5 fade-in">
+
+    <!-- ETIQUETA NUTRICIONAL ESTILO FDA -->
+    <div class="nutrition-label">
+
+      <h2 class="nl-title">Nutrition Facts</h2>
+      <div class="nl-divider-thick"></div>
+
+      <p class="nl-serving">Amount Per Serving</p>
+
+      <div class="nl-calories-row">
+        <span>Calories</span>
+        <span>{{ nutrientes.ENERC_KCAL.quantity | round | int if nutrientes.ENERC_KCAL is defined else "—" }}</span>
+      </div>
+
+      <div class="nl-divider-medium"></div>
+      <p class="nl-dv-header text-end mb-1">% Daily Value*</p>
+
+      <!-- Grasas -->
+      <div class="nl-row bold">
+        <span>Total Fat <span class="fw-normal">{{ nutrientes.FAT.quantity | round(1) if nutrientes.FAT is defined else "—" }} g</span></span>
+        <span>{{ ((nutrientes.FAT.quantity / 78) * 100) | round | int if nutrientes.FAT is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row indent">
+        <span>Saturated Fat {{ nutrientes.FASAT.quantity | round(1) if nutrientes.FASAT is defined else "—" }} g</span>
+        <span>{{ ((nutrientes.FASAT.quantity / 20) * 100) | round | int if nutrientes.FASAT is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row indent">
+        <span>Trans Fat {{ nutrientes.FATRN.quantity | round(1) if nutrientes.FATRN is defined else "—" }} g</span>
+        <span></span>
+      </div>
+
+      <!-- Colesterol -->
+      <div class="nl-row bold">
+        <span>Cholesterol <span class="fw-normal">{{ nutrientes.CHOLE.quantity | round(1) if nutrientes.CHOLE is defined else "—" }} mg</span></span>
+        <span>{{ ((nutrientes.CHOLE.quantity / 300) * 100) | round | int if nutrientes.CHOLE is defined else "—" }}%</span>
+      </div>
+
+      <!-- Sodio -->
+      <div class="nl-row bold">
+        <span>Sodium <span class="fw-normal">{{ nutrientes.NA.quantity | round(1) if nutrientes.NA is defined else "—" }} mg</span></span>
+        <span>{{ ((nutrientes.NA.quantity / 2300) * 100) | round | int if nutrientes.NA is defined else "—" }}%</span>
+      </div>
+
+      <!-- Carbohidratos -->
+      <div class="nl-row bold">
+        <span>Total Carbohydrate <span class="fw-normal">{{ nutrientes.CHOCDF.quantity | round(1) if nutrientes.CHOCDF is defined else "—" }} g</span></span>
+        <span>{{ ((nutrientes.CHOCDF.quantity / 275) * 100) | round | int if nutrientes.CHOCDF is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row indent">
+        <span>Dietary Fiber {{ nutrientes.FIBTG.quantity | round(1) if nutrientes.FIBTG is defined else "—" }} g</span>
+        <span>{{ ((nutrientes.FIBTG.quantity / 28) * 100) | round | int if nutrientes.FIBTG is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row indent">
+        <span>Total Sugars {{ nutrientes.SUGAR.quantity | round(1) if nutrientes.SUGAR is defined else "—" }} g</span>
+        <span></span>
+      </div>
+      <div class="nl-row indent2">
+        <span>Includes {{ nutrientes["SUGAR.added"].quantity | round(1) if nutrientes["SUGAR.added"] is defined else "—" }} g Added Sugars</span>
+        <span></span>
+      </div>
+
+      <!-- Proteína -->
+      <div class="nl-row bold">
+        <span>Protein <span class="fw-normal">{{ nutrientes.PROCNT.quantity | round(1) if nutrientes.PROCNT is defined else "—" }} g</span></span>
+        <span>{{ ((nutrientes.PROCNT.quantity / 50) * 100) | round | int if nutrientes.PROCNT is defined else "—" }}%</span>
+      </div>
+
+      <div class="nl-divider-thick"></div>
+
+      <!-- Vitaminas y minerales -->
+      <div class="nl-row">
+        <span>Vitamin D {{ nutrientes.VITD.quantity | round(1) if nutrientes.VITD is defined else "—" }} µg</span>
+        <span>{{ ((nutrientes.VITD.quantity / 20) * 100) | round | int if nutrientes.VITD is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row">
+        <span>Calcium {{ nutrientes.CA.quantity | round(1) if nutrientes.CA is defined else "—" }} mg</span>
+        <span>{{ ((nutrientes.CA.quantity / 1300) * 100) | round | int if nutrientes.CA is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row">
+        <span>Iron {{ nutrientes.FE.quantity | round(1) if nutrientes.FE is defined else "—" }} mg</span>
+        <span>{{ ((nutrientes.FE.quantity / 18) * 100) | round | int if nutrientes.FE is defined else "—" }}%</span>
+      </div>
+      <div class="nl-row" style="border-bottom: none;">
+        <span>Potassium {{ nutrientes.K.quantity | round(1) if nutrientes.K is defined else "—" }} mg</span>
+        <span>{{ ((nutrientes.K.quantity / 4700) * 100) | round | int if nutrientes.K is defined else "—" }}%</span>
+      </div>
+
+      <div class="nl-divider-thin mt-2"></div>
+      <p class="nl-footnote">
+        * El % de Valor Diario indica cuánto contribuye un nutriente a una dieta de 2,000 kcal diarias.
+      </p>
+
+    </div><!-- /nutrition-label -->
+  </div>
+</div>
+
+{% elif alimento %}
+<p class="text-center text-muted mt-4">
+    No se encontraron datos para "<strong>{{ alimento }}</strong>".<br>
+    <small>Intenta con formato en inglés: <em>1 cup rice</em>, <em>100g chicken</em></small>
+</p>
+{% endif %}
+
+{% endblock %}

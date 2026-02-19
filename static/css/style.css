@@ -1,0 +1,535 @@
+/* ============================================
+   WELLNESS APP — style.css
+   Fuente: Poppins + Playfair Display
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap');
+
+/* ---- RESET Y BASE ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #e8f5ee;   /* verde oscuro suave de fondo */
+    color: #0f2018;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* HACE QUE EL MAIN CREZCA Y EMPUJE EL FOOTER */
+main.container {
+    flex: 1 0 auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1300px !important;
+    width: 100%;
+}
+
+/* ---- TIPOGRAFÍA ---- */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ---- NAVBAR ---- */
+.navbar {
+    padding: 1rem 0;
+    border-bottom: 2px solid #a7d9bc;
+    background-color: #f0faf4 !important;
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-family: "Playfair Display", serif;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #1a5c38 !important;
+    padding: 0.4rem 1rem !important;
+    border-radius: 8px;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+
+.nav-link:hover {
+    background-color: #b8e6cc;
+    color: #0e3d24 !important;
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background-color: #4dba87;
+    color: #042b17 !important;
+}
+
+/* ---- FOOTER ---- */
+footer {
+    flex-shrink: 0;
+    border-top: 2px solid #a7d9bc;
+    background: #f0faf4;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #4a7a5a;
+}
+
+/* ---- BOTONES ---- */
+.btn-success {
+    background: linear-gradient(135deg, #2db87a, #0a7c45);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 50px;
+    padding: 0.55rem 1.6rem;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 14px rgba(10,124,69,0.35);
+}
+
+.btn-success:hover {
+    opacity: 0.9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(10,124,69,0.45);
+    background: linear-gradient(135deg, #2db87a, #0a7c45);
+}
+
+.btn-outline-success {
+    border: 2px solid #0cb677;
+    color: #0a7c45;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 0.45rem 1.4rem;
+    transition: 0.25s;
+}
+
+.btn-outline-success:hover {
+    background: #0cb677;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ---- INPUTS ---- */
+.form-control, .form-select {
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #7ecda0;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    background: white;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0a7c45;
+    box-shadow: 0 0 0 4px rgba(10, 124, 69, 0.15);
+    outline: none;
+}
+
+/* ---- CARDS GENERALES ---- */
+.card {
+    border-radius: 18px !important;
+    border: none !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1) !important;
+}
+
+.card-body {
+    padding: 1.8rem 1.5rem;
+}
+
+/* ---- BANNERS DE SECCIÓN ---- */
+.section-banner {
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #1f7a4a 0%, #0d5c34 60%, #063d22 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-banner::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+}
+
+.section-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -20px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+}
+
+.section-banner h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-banner p {
+    opacity: 0.9;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+}
+
+/* ---- CARRUSEL (frase principal) ---- */
+.carousel {
+    width: auto;
+    border-radius: 8px;       
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+}
+
+.carousel-item {
+    border-radius: 8px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    border-radius: 50%;
+    padding: 1.2rem;
+    background-size: 60%;
+}
+
+/* ---- TRACKER CARDS (Bienestar) ---- */
+.tracker-card {
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #c8ecd8, #8fd4ae);
+    box-shadow: 0 6px 20px rgba(10, 124, 69, 0.15);
+    transition: transform 0.25s;
+    height: 100%;
+}
+
+.tracker-card:hover {
+    transform: translateY(-5px);
+}
+
+.tracker-card h4 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #063d22;
+}
+
+.big-icon {
+    font-size: 3.2rem;
+    color: #0a7c45;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+/* ---- NUTRICIÓN BOX ---- */
+.nutri-box {
+    padding: 2rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #e0f5ea, #c0e8d0);
+    border: 2px solid #7ecda0;
+}
+
+.nutri-box p {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+}
+
+.nutri-box strong {
+    color: #063d22;
+}
+
+/* ---- EJERCICIOS (ExerciseDB) ---- */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.8rem;
+    padding: 0.5rem 0;
+}
+
+.exercise-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+
+.exercise-card-media {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f4f4f4;
+}
+
+.exercise-card-media.gif {
+    object-fit: contain;
+    padding: 10px;
+    background: #f4f4f4;   /* gris neutro, nada de verde */
+}
+
+.exercise-card-body {
+    padding: 1.2rem 1.4rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.exercise-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #063d22;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+/* ---- BADGES ---- */
+.exercise-badge {
+    display: inline-block;
+    background: #d0eed9;
+    color: #0d5c34;
+    border-radius: 50px;
+    padding: 0.2rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.exercise-badge.equipment  { background: #fef3c7; color: #92400e; }
+.exercise-badge.secondary  { background: #ede9fe; color: #4c1d95; }
+.exercise-badge.badge-beginner      { background: #dcfce7; color: #166534; }
+.exercise-badge.badge-intermediate  { background: #fef9c3; color: #854d0e; }
+.exercise-badge.badge-advanced      { background: #fee2e2; color: #991b1b; }
+.exercise-badge.category            { background: #e0f2fe; color: #075985; }
+
+/* ---- INSTRUCCIONES ---- */
+.exercise-instructions {
+    font-size: 0.82rem;
+    color: #4b5563;
+    line-height: 1.6;
+    flex: 1;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.exercise-instructions ul {
+    padding-left: 1.1rem;
+    margin: 0;
+}
+
+.exercise-instructions li {
+    margin-bottom: 0.3rem;
+}
+
+/* Placeholder si no hay imagen — sutil, gris neutro */
+.exercise-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ebebeb;       /* gris claro, casi invisible */
+    color: #aaa;               /* icono y texto muy suaves */
+    font-size: 0.85rem;
+    gap: 0.5rem;
+}
+
+.exercise-placeholder i {
+    font-size: 2.5rem;
+    opacity: 0.4;              /* muy tenue */
+}
+
+/* ---- DESCRIPCIÓN BREVE ---- */
+.exercise-description {
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---- INSTRUCCIONES DESPLEGABLES ---- */
+.exercise-instructions-toggle {
+    font-size: 0.82rem;
+    color: #0a7c45;
+    cursor: pointer;
+}
+
+.exercise-instructions-toggle summary {
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+    padding: 0.3rem 0;
+}
+
+.exercise-instructions-toggle summary::before {
+    content: "▶ ";
+    font-size: 0.7rem;
+}
+
+.exercise-instructions-toggle[open] summary::before {
+    content: "▼ ";
+}
+
+/* ---- FILTRO DE MÚSCULOS ---- */
+.muscle-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.muscle-btn {
+    border: 2px solid #7ecda0;
+    background: white;
+    color: #0d5c34;
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.muscle-btn:hover,
+.muscle-btn.active {
+    background: linear-gradient(135deg, #2db87a, #0a7c45);
+    border-color: transparent;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10,124,69,0.3);
+}
+
+/* ---- ANIMACIONES ---- */
+.fade-in {
+    animation: fadeInUp 0.7s ease-in-out both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- LOADING SPINNER ---- */
+.spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    flex-direction: column;
+    gap: 1rem;
+    color: #0a7c45;
+}
+
+/* ---- UTILIDADES ---- */
+.text-success-dark  { color: #063d22 !important; }
+.bg-success-soft    { background-color: #c8ecd8 !important; }
+
+/* ============================================
+   ETIQUETA NUTRICIONAL ESTILO FDA
+   ============================================ */
+.nutrition-label {
+    border: 3px solid #1a1a1a;
+    border-radius: 4px;
+    padding: 6px 10px 4px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    background: white;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.nl-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 2px 0;
+    font-family: "Arial Black", Arial, sans-serif;
+    letter-spacing: -1px;
+}
+
+.nl-serving {
+    font-size: 0.9rem;
+    margin: 3px 0 0;
+    font-weight: 400;
+}
+
+.nl-calories-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.nl-calories-row span:first-child { font-size: 1.6rem; font-weight: 900; }
+.nl-calories-row span:last-child  { font-size: 3rem;   font-weight: 900; line-height: 1; }
+
+.nl-dv-header { font-size: 0.72rem; margin: 0; }
+
+.nl-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 0;
+}
+
+.nl-row.bold    { font-weight: 700; }
+.nl-row.indent  { padding-left: 1.2rem; font-weight: 400; }
+.nl-row.indent2 { padding-left: 2.2rem; font-weight: 400; }
+
+.nl-divider-thick  { border: none; border-top: 8px solid #1a1a1a; margin: 3px 0; }
+.nl-divider-medium { border: none; border-top: 4px solid #1a1a1a; margin: 2px 0; }
+.nl-divider-thin   { border: none; border-top: 1px solid #ccc;    margin: 2px 0; }
+
+.nl-footnote {
+    font-size: 0.7rem;
+    color: #333;
+    margin: 4px 0 0;
+    line-height: 1.4;
+}

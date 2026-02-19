@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="section-banner fade-in">
+    <h2 class="fw-bold">Tu Bienestar Diario 🌿</h2>
+    <p>Registra tus hábitos del día.</p>
+</div>
+
+<!-- FORMULARIO -->
+<form method="POST" class="fade-in">
+    <div class="row justify-content-center g-4">
+
+        <div class="col-md-4">
+            <div class="tracker-card">
+                <i class="bi bi-cup-straw big-icon"></i>
+                <h4>Vasos de agua</h4>
+                <input type="number" name="agua" class="form-control mt-3"
+                       min="0" max="20" placeholder="0 – 20">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="tracker-card">
+                <i class="bi bi-moon-stars big-icon"></i>
+                <h4>Horas de sueño</h4>
+                <input type="number" name="horas" class="form-control mt-3"
+                       min="0" max="24" placeholder="0 – 24">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="tracker-card">
+                <i class="bi bi-emoji-smile big-icon"></i>
+                <h4>Estado emocional</h4>
+                <select name="estado" class="form-select mt-3">
+                    <option>😊 Feliz</option>
+                    <option>😐 Neutral</option>
+                    <option>😔 Triste</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success px-5 py-2 fs-6">
+            <i class="bi bi-check-circle me-1"></i> Guardar registro
+        </button>
+    </div>
+</form>
+
+{% if mensaje %}
+<p class="text-center mt-4 fw-bold text-success fade-in fs-5">{{ mensaje }}</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block content %}
+
+{# ── Diccionarios de traducción (términos fijos de la API) ── #}
+{% set t_target = {
+    "calves": "Pantorrillas",
+    "hamstrings": "Isquiotibiales",
+    "quadriceps": "Cuádriceps",
+    "glutes": "Glúteos",
+    "lats": "Dorsales",
+    "upper back": "Espalda alta",
+    "lower back": "Espalda baja",
+    "middle back": "Espalda media",
+    "chest": "Pecho",
+    "biceps": "Bíceps",
+    "triceps": "Tríceps",
+    "shoulders": "Hombros",
+    "delts": "Deltoides",
+    "traps": "Trapecios",
+    "abs": "Abdominales",
+    "obliques": "Oblicuos",
+    "serratus anterior": "Serrato anterior",
+    "spine": "Columna",
+    "soleus": "Sóleo",
+    "ankles": "Tobillos",
+    "ankle stabilizers": "Estabilizadores del tobillo",
+    "neck": "Cuello",
+    "forearms": "Antebrazos",
+    "cardiovascular system": "Sistema cardiovascular",
+    "adductors": "Aductores",
+    "abductors": "Abductores",
+    "pectorals": "Pectorales",
+    "levator scapulae": "Elevador de la escápula"
+} %}
+
+{% set t_equip = {
+    "barbell": "Barra",
+    "dumbbell": "Mancuernas",
+    "body weight": "Peso corporal",
+    "cable": "Cable",
+    "machine": "Máquina",
+    "leverage machine": "Máquina de palanca",
+    "smith machine": "Máquina Smith",
+    "ez barbell": "Barra EZ",
+    "resistance band": "Banda elástica",
+    "kettlebell": "Kettlebell",
+    "medicine ball": "Balón medicinal",
+    "roller": "Rodillo",
+    "suspension": "Suspensión (TRX)",
+    "trap bar": "Barra hexagonal",
+    "band": "Banda",
+    "bosu ball": "Bosu",
+    "stability ball": "Balón de estabilidad",
+    "assisted": "Asistido",
+    "rope": "Cuerda"
+} %}
+
+{% set t_difficulty = {
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado"
+} %}
+
+{% set t_category = {
+    "strength": "Fuerza",
+    "cardio": "Cardio",
+    "mobility": "Movilidad",
+    "stretching": "Estiramiento",
+    "plyometrics": "Pliométrico",
+    "powerlifting": "Powerlifting",
+    "olympic weightlifting": "Halterofilia"
+} %}
+
+<div class="section-banner fade-in">
+    <h2 class="fw-bold">Biblioteca de Ejercicios 💪</h2>
+    <p>Filtra por grupo muscular y explora ejercicios con imágenes e instrucciones detalladas.</p>
+</div>
+
+<!-- FILTRO DE MÚSCULOS -->
+<div class="muscle-filter fade-in">
+    {% set muscles = [
+        ("all",         "Todos"),
+        ("back",        "Espalda"),
+        ("chest",       "Pecho"),
+        ("shoulders",   "Hombros"),
+        ("upper arms",  "Bíceps / Tríceps"),
+        ("upper legs",  "Cuádriceps / Isquios"),
+        ("lower legs",  "Pantorrillas"),
+        ("waist",       "Abdomen"),
+        ("cardio",      "Cardio"),
+        ("neck",        "Cuello")
+    ] %}
+    {% for value, label in muscles %}
+        <a href="/ejercicios?bodyPart={{ value }}"
+           class="muscle-btn {% if bodyPart == value %}active{% endif %}">
+            {{ label }}
+        </a>
+    {% endfor %}
+</div>
+
+<!-- GRID DE EJERCICIOS -->
+{% if ejercicios %}
+<div class="exercise-grid fade-in">
+    {% for e in ejercicios %}
+    <div class="exercise-card">
+
+        <!-- IMAGEN: gifUrl de la API o CDN público por ID -->
+        {% set img_src = e.gifUrl if e.gifUrl else "https://v2.exercisedb.io/image/" ~ e.id %}
+        <img class="exercise-card-media gif"
+             src="{{ img_src }}"
+             alt="{{ e.name }}"
+             loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="exercise-placeholder" style="display:none;">
+            <i class="bi bi-person-arms-up"></i>
+            <span>Sin imagen disponible</span>
+        </div>
+
+        <div class="exercise-card-body">
+
+            <!-- Nombre (capitalizado) -->
+            <h3>{{ e.name | title }}</h3>
+
+            <!-- Dificultad + Categoría -->
+            <div class="d-flex flex-wrap gap-1">
+                {% if e.difficulty %}
+                    {% set diff_color = {"beginner": "badge-beginner", "intermediate": "badge-intermediate", "advanced": "badge-advanced"} %}
+                    <span class="exercise-badge {{ diff_color.get(e.difficulty, '') }}">
+                         {{ t_difficulty.get(e.difficulty, e.difficulty) }}
+                    </span>
+                {% endif %}
+                {% if e.category %}
+                    <span class="exercise-badge category">
+                         {{ t_category.get(e.category, e.category) }}
+                    </span>
+                {% endif %}
+            </div>
+
+            <!-- Músculo objetivo + Equipo -->
+            <div class="d-flex flex-wrap gap-1">
+                {% if e.target %}
+                    <span class="exercise-badge">
+                         {{ t_target.get(e.target, e.target) }}
+                    </span>
+                {% endif %}
+                {% if e.equipment %}
+                    <span class="exercise-badge equipment">
+                         {{ t_equip.get(e.equipment, e.equipment) }}
+                    </span>
+                {% endif %}
+            </div>
+
+            <!-- Músculos secundarios -->
+            {% if e.secondaryMuscles and e.secondaryMuscles|length > 0 %}
+            <div class="d-flex flex-wrap gap-1">
+                {% for m in e.secondaryMuscles[:3] %}
+                    <span class="exercise-badge secondary">
+                        + {{ t_target.get(m, m) }}
+                    </span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Descripción breve -->
+            {% if e.descripcion %}
+            <p class="exercise-description">{{ e.descripcion }}</p>
+            {% endif %}
+
+            <!-- Instrucciones traducidas desde Python -->
+            {% if e.instrucciones and e.instrucciones|length > 0 %}
+            <details class="exercise-instructions-toggle">
+                <summary>Ver instrucciones</summary>
+                <ol class="exercise-instructions mt-2">
+                    {% for step in e.instrucciones %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </details>
+            {% elif e.instructions and e.instructions|length > 0 %}
+            <details class="exercise-instructions-toggle">
+                <summary>Ver instrucciones</summary>
+                <ol class="exercise-instructions mt-2">
+                    {% for step in e.instructions %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </details>
+            {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="text-center py-5 fade-in">
+    <i class="bi bi-exclamation-circle fs-1 text-muted"></i>
+    <p class="mt-3 text-muted">No se encontraron ejercicios. Intenta con otro grupo muscular.</p>
+</div>
+{% endif %}
+
+{% endblock %}

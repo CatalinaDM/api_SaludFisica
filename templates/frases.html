@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="section-banner fade-in">
+    <h2 class="fw-bold">Frase Motivacional del Día 🌟</h2>
+</div>
+
+<div class="card shadow p-4 mx-auto" style="max-width: 600px;">
+    <h3 class="text-center fw-bold">"{{ frase }}"</h3>
+    <p class="text-end mt-3 fw-bold">— {{ autor }}</p>
+</div>
+
+<div class="text-center mt-4">
+    <a href="/frases" class="btn btn-success px-4 py-2">Otra frase</a>
+</div>
+
+{% endblock %}

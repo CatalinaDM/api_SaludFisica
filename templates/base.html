@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title if title else "Wellness App" }}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Fonts: Poppins + Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container" style="max-width: 1300px;">
+
+            <a class="navbar-brand fw-bold text-success" href="/">
+                🌿 Wellness App
+            </a>
+
+            <button class="navbar-toggler border-0" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">
+                            <i class="bi bi-house-door me-1"></i>Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/frases' in request.path %}active{% endif %}" href="/frases">
+                            <i class="bi bi-chat-quote me-1"></i>Frases
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/ejercicios' in request.path %}active{% endif %}" href="/ejercicios">
+                            <i class="bi bi-bicycle me-1"></i>Ejercicios
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/nutricion' in request.path %}active{% endif %}" href="/nutricion">
+                            <i class="bi bi-egg-fried me-1"></i>Nutrición
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/bienestar' in request.path %}active{% endif %}" href="/bienestar">
+                            <i class="bi bi-heart-pulse me-1"></i>Bienestar
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="container py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Wellness App — Creado con Flask por Mirza y Catalina</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 600 });
+    </script>
+
+</body>
+</html>
