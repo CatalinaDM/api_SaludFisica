@@ -24,7 +24,7 @@ try:
     TRADUCTOR_DISPONIBLE = True
 except ImportError:
     TRADUCTOR_DISPONIBLE = False
-    print("⚠️  deep-translator no instalado. pip install deep-translator")
+    print("deep-translator no instalado. pip install deep-translator")
 
 app = Flask(__name__)
 
@@ -56,33 +56,36 @@ def traducir_en_lote(textos):
 # -------------------------------------------------------
 #           FRASES (ZenQuotes)
 # -------------------------------------------------------
-@app.route("/")
-def index():
+def obtener_frase_motivacional():
     try:
-        response   = requests.get("https://zenquotes.io/api/random", timeout=5)
+        response = requests.get("https://zenquotes.io/api/random", timeout=5)
         frase_data = response.json()[0]
-        frase      = frase_data["q"]
-        autor      = frase_data["a"]
 
         frase_en = frase_data["q"]
+        autor_en = frase_data["a"]
+
         frase = traducir_en_lote([frase_en])[0]
+        autor = traducir_en_lote([autor_en])[0]
+
+        return frase, autor
 
     except Exception:
-        frase = "No se pudo obtener una frase."
-        autor = "Error"
+        return "No se pudo obtener una frase.", "Error"
+    
+@app.route("/frases")
+def frases():
+    frase, autor = obtener_frase_motivacional()
+    return render_template("frases.html", frase=frase, autor=autor, title="Frases Motivacionales")
 
-    return render_template("index.html", frase=frase, autor=autor, title="Principal Principal")
+@app.route("/")
+def index():
+    frase, autor = obtener_frase_motivacional()
+    return render_template("index.html", frase=frase, autor=autor, title="Inicio")
+
 
 # -------------------------------------------------------
 #    EJERCICIOS (ExerciseDB — RapidAPI)
 # -------------------------------------------------------
-
-
-EXERCISEDB_HEADERS = {
-    "X-RapidAPI-Key":   RAPIDAPI_KEY,
-    "X-RapidAPI-Host":  "exercisedb.p.rapidapi.com"
-}
-
 
 @app.route("/ejercicios")
 def ejercicios():
@@ -175,6 +178,24 @@ def nutricion():
                            alimento=alimento,
                            nutrientes=nutrientes,
                            title="Nutrición")
+
+
+# -------------------------------------------------------
+#           BIENESTAR (Local)
+# -------------------------------------------------------
+@app.route("/bienestar", methods=["GET", "POST"])
+def bienestar():
+    mensaje = None
+
+    if request.method == "POST":
+        agua   = request.form.get("agua")
+        horas  = request.form.get("horas")
+        estado = request.form.get("estado")
+        print(f"Registro: {agua} vasos, {horas} horas, estado={estado}")
+        mensaje = "✔ Registro guardado correctamente"
+
+    return render_template("bienestar.html", mensaje=mensaje, title="Bienestar")
+
 
 # -------------------------------------------------------
 #           EJECUCIÓN DEL SERVIDOR
