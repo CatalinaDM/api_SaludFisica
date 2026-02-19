@@ -318,6 +318,19 @@ importar python-detenv en app.py y después crear tu archivo .env donde pondras 
 
 ---
 
+##Evidencia 
+<img width="1920" height="1019" alt="image" src="https://github.com/user-attachments/assets/320a4b3b-4a47-4a68-ab17-a6f8118ce05c" />
+<img width="1871" height="952" alt="image" src="https://github.com/user-attachments/assets/277ca06a-c019-46ef-a775-ba7c8c25b52b" />
+<img width="1920" height="947" alt="image" src="https://github.com/user-attachments/assets/b7f8f8b8-62bc-4dce-9650-3130f85050f2" />
+<img width="1920" height="967" alt="image" src="https://github.com/user-attachments/assets/067613aa-3283-4c71-8eec-718a8fd41b9a" />
+<img width="1920" height="1025" alt="image" src="https://github.com/user-attachments/assets/0b67d40b-8398-4fb0-9289-1691932c63af" />
+
+
+
+
+
+
+
 ##  Autoras
 
 Desarrollado  por **Mirza Natzielly Morales Lezama y Carmen Catalina Delgado Manzano** — 2026
