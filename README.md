@@ -324,9 +324,9 @@ importar python-detenv en app.py y después crear tu archivo .env donde pondras 
 <img width="1920" height="947" alt="image" src="https://github.com/user-attachments/assets/b7f8f8b8-62bc-4dce-9650-3130f85050f2" />
 <img width="1920" height="967" alt="image" src="https://github.com/user-attachments/assets/067613aa-3283-4c71-8eec-718a8fd41b9a" />
 <img width="1920" height="1025" alt="image" src="https://github.com/user-attachments/assets/0b67d40b-8398-4fb0-9289-1691932c63af" />
-
-
-
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/ee09deff-ae37-4f19-9111-f8bab32767cd" />
+<img width="1920" height="1013" alt="image" src="https://github.com/user-attachments/assets/25df2ca6-ee06-45ff-8c60-cc3fedc401ca" />
+<img width="1920" height="1012" alt="image" src="https://github.com/user-attachments/assets/2b4aadea-9161-40ea-938f-44b76ea22e30" />
 
 
 
